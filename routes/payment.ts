@@ -38,7 +38,7 @@ export function getPaymentMethods () {
 
 export function getPaymentMethodById () {
   return async (req: Request, res: Response, next: NextFunction) => {
-    const card = await CardModel.findOne({ where: { id: req.params.id, UserId: req.body.UserId } })
+    const card = await CardModel.findOne({ where: { id: req.params.id } })
     const displayableCard: displayCard = {
       UserId: 0,
       id: 0,

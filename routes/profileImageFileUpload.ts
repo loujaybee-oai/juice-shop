@@ -26,7 +26,7 @@ export function profileImageFileUpload () {
       next(new Error('Illegal file type'))
       return
     }
-    if (uploadedFileType === null || !uploadedFileType.mime.startsWith('image')) {
+    if (uploadedFileType === null || !file?.mimetype.startsWith('image/')) {
       res.status(415)
       next(new Error(`Profile image upload does not accept this file type${uploadedFileType ? (': ' + uploadedFileType.mime) : '.'}`))
       return
