@@ -21,9 +21,9 @@ export function login () {
     BasketModel.findOrCreate({ where: { UserId: user.id } })
       .then(([basket]: [BasketModel, boolean]) => {
         const authenticatedUser = { data: user, bid: basket.id } // keep track of original basket
-        const token = security.authorize(authenticatedUser)
-        security.authenticatedUsers.put(token, authenticatedUser)
-        res.json({ authentication: { token, bid: basket.id, umail: user.email } })
+        const sessionToken = security.authorize(authenticatedUser)
+        security.authenticatedUsers.put(sessionToken, authenticatedUser)
+        res.json({ authentication: { token: sessionToken, bid: basket.id, umail: user.email } })
       }).catch((error: Error) => {
         next(error)
       })
